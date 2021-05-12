@@ -1,0 +1,25 @@
+.btnclass{
+    padding:0.4em 2em;
+    background-color: #00d7b5;
+    border-radius: 12px;
+    outline: none;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:17px;
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.btnclass:disabled {
+    opacity: 0.4;
+}
+
+.search{
+    width: 310px;
+    padding: 7px 12px;
+    outline: none;
+    border: 2px solid grey;
+    border-radius: 50px;
+    text-align: center;
+}

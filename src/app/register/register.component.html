@@ -1,0 +1,123 @@
+<div class="container">
+    <div class="mx-3" align="center">
+      <br /><br />
+      <button
+        class="btnclass py-2 px-3" (click)="route(1)"
+        [style.background-color]="routeflag==1?'#002e86':'#00d7b5'"
+      >
+        Register
+      </button>
+      <button
+        class="btnclass ml-2 py-2 px-3" (click)="route(2)"
+        [style.background-color]="routeflag==2?'#002e86':'#00d7b5'"
+      >
+        View
+      </button>
+    </div><br>
+    <form [formGroup]="registerForm">
+    <div class="py-2" style=" background:linear-gradient(58deg,#00d7b5, #6193ef, #00d7b5);border-radius:18px">
+    <h4 style="text-align:center">Register</h4><br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 py-2">
+          <div class="px-3">
+              <input
+                type="text"
+                name="" class="form-control"
+                placeholder="First Name *"
+                formControlName="firstname"
+              />
+              <p class="messages text-danger" *ngIf="registerForm.controls.firstname.errors?.pattern">
+              Text Only Accepts!..</p><br>
+
+              <input
+              type="text"
+              name="" class="form-control"
+              placeholder="Last Name"
+              formControlName="lastname"             
+              />
+              <p class="messages text-danger" *ngIf="registerForm.controls.lastname.errors?.pattern">
+              Text Only Accepts!..</p><br>
+
+              <input
+              type="text"
+              name="" class="form-control"
+              placeholder="Mobile *"
+              formControlName="mobileno" maxlength="15"
+            />
+            <p class="messages text-danger" *ngIf="registerForm.controls.mobileno.errors?.pattern">
+            Number Only Accepts!..</p><br>
+            
+            <input
+            type="text"
+            name="" class="form-control"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <p class="messages text-danger" *ngIf="registerForm.controls.email.errors?.pattern">
+          Match Email Format!..</p><br>
+
+            <input
+            type="text"
+            name="" class="form-control"
+            placeholder="Address1 *"
+            formControlName="address1"
+            /> <br>
+
+            <input
+            type="text"
+            name="" class="form-control"
+            placeholder="Address2 "
+            formControlName="address2"
+            /> <br>       
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 py-2">
+          <div class="px-3">
+            <input
+            type="date"
+            name="" class="form-control"
+            placeholder="Date of Birth "
+            formControlName="dob" (change)="dobvalidate($event.target.value)"
+            /> <br>
+          
+            <select class="form-control" formControlName="country" (change)="getstates($event.target.value)">
+                <option value="opt1">--Select Country *--</option>
+                <option *ngFor="let country of countrylist" value={{country.cid}}>{{country.cname}}</option>
+            </select><br>
+
+               
+            <select class="" class="form-control" formControlName="state" (change)="getcities($event.target.value)">
+              <option value="opt1">--Select State *--</option>
+              <option *ngFor="let state of selstatelist" value={{state.sid}}>{{state.sname}}</option>
+            </select><br> 
+
+            <select class="form-control" formControlName="city">
+                <option value="opt1">--Select City *--</option>
+                <option *ngFor="let city of selcitylist" value={{city.cyid}}>{{city.cyname}}</option>
+            </select><br>
+            <select class="form-control" formControlName="idtype">
+              <option value="opt1">--Select ID Type--</option>
+              <option value="aaadharcard">Aadhar Card</option>
+              <option value="voterid">Voter ID</option>
+              <option value="drivinglicense">Driving License</option>
+            </select><br>
+
+            <input
+            type="text"
+            name="" class="form-control"
+            placeholder="Id Proof No"
+            formControlName="idno" onkeyup="this.value = this.value.toUpperCase();"
+          />
+          <p class="messages text-danger" *ngIf="registerForm.controls.idno.errors?.pattern">
+            Match Proof Format!..</p><br>
+
+          </div>
+        </div>
+      </div><br>
+      <div class="" align="center">
+        <button class="btnclass" style="width:80%;height:41px;background-color: #002e86;"
+        [disabled]="!registerForm.valid" (click)="Register()">Create User</button><br>
+      </div><br>
+    </div>
+    </form>
+</div>

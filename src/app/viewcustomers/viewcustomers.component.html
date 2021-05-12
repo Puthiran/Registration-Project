@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="mx-3" align="center">
+        <br /><br />
+        <button class="btnclass py-2 px-3" (click)="route(1)"
+            [style.background-color]="routeflag==1?'#002e86':'#00d7b5'">
+            Register
+        </button>
+        <button class="btnclass ml-2 py-2 px-3" (click)="route(2)"
+            [style.background-color]="routeflag==2?'#002e86':'#00d7b5'">
+            View
+        </button>
+    </div><br><br>
+    <div class="searchbox" align="center">
+        <input type="text" class="search mt-1" placeholder="Search Customer Name/Mobile No"
+        (input)="searchcustomers($event.target.value)" autocomplete="off"/>
+    </div><br>
+    <div class="dt-responsive">
+        <div style="overflow-x: auto">
+            <table aria-describedby="mydesc" class="table table-striped table-bordered full-data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Mobile Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Id Proof</th>
+                        <th scope="col">ID Proof No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of custdata | paginate: { id: 'listing_pagination',
+                        itemsPerPage: rowsOnPage, currentPage: page };let i=index">
+                        <td>{{i+1}} </td>
+                        <td>{{item.firstname}} {{item.lastname}}</td>
+                        <td>{{item.mobileno}} </td>
+                        <td>{{item.email}} </td>
+                        <td>{{item.address1}} , {{item.address2}}</td>
+                        <td>{{item.idtype}} </td>
+                        <td>{{item.idno}} </td>
+                    </tr>
+                    <tr *ngIf="(custdata) == 0">
+                        <td></td>
+                        <td></td>
+                        <td class="nodata">No Data Available</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                   <tr>
+                       <td colspan="7">
+                           <pagination-controls id="listing_pagination" directionLinks="true"
+                           (pageChange)="page = $event" style="float: right;"></pagination-controls>
+                       </td>
+                   </tr>
+               </tfoot>
+            </table>
+        </div>
+    </div>
+</div><br>
